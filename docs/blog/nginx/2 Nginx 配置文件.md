@@ -1,0 +1,221 @@
+# `Nginx `配置文件详解
+
+1.  核心配置文件主要由三个部分构成
+   - 基本配置
+   - `events ` 配置
+   - `http`配置
+
+
+
+
+
+2.  配置文件
+
+   ```javascript
+   // 在conf 文件夹下的 nginx.conf 文件
+   
+   #################################基本配置
+   
+   #user  nobody;  # 配置worker 进程运行用户
+   worker_processes  1; # 配置工作进程数目，根据硬件调整，通常等于cpu数量或者2倍于cpu数量
+   
+   #error_log  logs/error.log; # 配置全局错误日志及类型 [debug, info, notice, warn, error, crit] 默认是error
+   #error_log  logs/error.log  notice;
+   #error_log  logs/error.log  info;
+   
+   #pid        logs/nginx.pid;  # 进程编号
+   
+   
+   
+   #################################events配置
+   
+   #配置工作模式和连接数
+   events {
+       worker_connections  1024;  # 配置每个worker进程连接数上限，nginx支持的总连接数就等于worker_process * worker_connections
+   }
+   
+   
+   #################################http配置
+   
+   
+   
+   http {
+       #-------------http基本配置---------------------
+       include       mime.types; # 配置nginx 支持哪些多媒体类型， 可以再conf/mime.types 查看支持哪些多媒体类型
+       default_type  application/octet-stream; # 默认文件类型
+   
+       # 配置日志格式
+       #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+       #                  '$status $body_bytes_sent "$http_referer" '
+       #                  '"$http_user_agent" "$http_x_forwarded_for"';
+   
+       #配置access.log 日志及其存放路径，并使用的上面定义的main日志格式
+   
+       #access_log  logs/access.log  main;  # 这里的main 就是上面配置的日志的格式
+   
+       sendfile        on; # 开启高效文件传输模式
+       #tcp_nopush     on; # 防止网络阻塞
+   
+       #keepalive_timeout  0;
+       keepalive_timeout  65; # 长连接超时时间， 单位是秒
+   
+       #gzip  on; # 开启gzip压缩输出 on表示开启
+   
+       # 轮询策略 默认
+       upstream www.xiangdeyizhang.xyz {
+            server 192.168.1.137:9555;
+            server 192.168.1.137:9554;
+            server 192.168.1.137:9553;
+       }
+    
+       # 配置负载均衡 权重策略
+   
+       upstream www.xiangdeyizhang.xyz {
+            server 192.168.1.137:9555 weight=3;
+            server 192.168.1.137:9554 weight=1;
+            server 192.168.1.137:9553 weight=2;
+       }
+   
+       # ip_hash 即ip绑定策略  ip固定访问某个服务器
+   
+       upstream www.xiangdeyizhang.xyz {
+           ip_hash;
+            server 192.168.1.137:9555;
+            server 192.168.1.137:9554;
+            server 192.168.1.137:9553;
+       }
+        
+       # least_conn 最少连接策略，每次连接，就会连接到，连接次数最少的那台
+       upstream www.xiangdeyizhang.xyz {
+           least_conn；
+            server 192.168.1.137:9555;
+            server 192.168.1.137:9554;
+            server 192.168.1.137:9553;
+       }
+   
+   
+   
+       #-------------http server区域配置----------------
+       
+       #### 配置虚拟主机  可以看到下面还有别的server 对象， 也就是说 这里可以配置很多的server 大概会有200 多个左右吧  每个的配置其实都是差不多的
+       server {
+           listen       80;  # 配置监听端口号  范围为 0 - 65535
+           server_name  localhost; # 配置服务名  localhost 表示任何ip都是可以进行访问的
+   
+   
+    
+           # 配置负载均衡的代理地址
+   
+           # proxy_paxx 后面跟的地址要和  upstream 后面跟的名称要是一样的
+           # 例如： upstream abcde   那么 proxy_pass http://abcde
+           location / {
+                proxy_pass http://www.xiangdeyizhang.xyz;
+           }
+   
+           # 配置静态代理 以 js|html|css|zip|gz|png|jpg|jpeg|doc|docx|pdf|ppt 为后缀的文件 都去这个地址进行访问
+           location ~ .*\.(js|html|css|zip|gz|png|jpg|jpeg|doc|docx|pdf|ppt)$ {
+               root E:\static
+           }
+   
+       
+           #charset koi8-r; #配置字符集  koi8-r 是俄罗斯字符集  我们中国可以改为utf-8字符集
+   
+           #access_log  logs/host.access.log  main;  # 与上面基本配置里面的日志是一样的，如果上面下面同时配置了 就以下面的为主  配置本虚拟主机的访问日志
+   
+           
+           # location 是用于匹配路由的，这里的意思就是匹配 为 / 的路由， 因为你访问localhost:8080 的时候就会默认访问带 / 的路由
+           # localhost:8080 就是 localhost:8080/ 的缩写显示
+           # 这里就是匹配到 / 路由 然后做一个界面的展示  跟前端路的意思差不多
+           location / {
+               # 这里的root 就相当于 ip + port localhost:8080 = root = ip + port
+               root  E:\ace; # root 是配置服务器的默认网站根目录位置，默认为nginx安装主目录下的html目录， 实际中我们要定位到项目的html目录中 例如打包好的dist目录中
+               index  index.html index.htm; # 配置首页文件的名称 可省略 会自动去寻找文件夹下的index.html
+           }
+   
+   
+        
+   
+   
+   
+           #error_page  404              /404.html; # 配置404界面，当访问不到这个界面的时候弹出一个404界面
+   
+           # redirect server error pages to the static page /50x.html
+           #
+           error_page   500 502 503 504  /50x.html; # 同理 配置50x界面，只要是符合这个匹配规则的都会进入到这个界面
+           # 有等号 表示精确匹配
+           location = /50x.html {
+               root   html;
+           }
+    
+           # PHP 脚本请求全部转发到Apache处理
+           # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+           #
+           #location ~ \.php$ {
+           #    proxy_pass   http://127.0.0.1;
+           #}
+   
+           # PHP 脚本请求全部转发到FastCGI处理
+           # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+           #
+           #location ~ \.php$ {
+           #    root           html;
+           #    fastcgi_pass   127.0.0.1:9000;
+           #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+           #    include        fastcgi_params;
+           #}
+   
+           # 禁止访问 .htaccess文件 这个文件中，会有很多的路径，这个文件中的路径表示外网不能访问这些文件
+           # deny access to .htaccess files, if Apache's document root
+           # concurs with nginx's one
+           #
+           #location ~ /\.ht {
+           #    deny  all;
+           #}
+       }
+   
+       # 配置另外一个虚拟主机
+       # another virtual host using mix of IP-, name-, and port-based configuration
+       #
+       #server {
+       #    listen       8000;
+       #    listen       somename:8080;
+       #    server_name  somename  alias  another.alias;
+   
+       #    location / {
+       #        root   html;
+       #        index  index.html index.htm;
+       #    }
+       #}
+   
+   
+   
+       # 举例：  配置https 服务， 安全的网络传输协议， 加密传输
+       # HTTPS server
+       #
+       #server {
+       #    listen       443 ssl; # 端口默认为443
+       #    server_name  localhost;
+   
+       #    ssl_certificate      cert.pem;  # 证书  需要进行购买
+       #    ssl_certificate_key  cert.key;  # 证书  需要进行购买
+   
+       #    ssl_session_cache    shared:SSL:1m;
+       #    ssl_session_timeout  5m;
+   
+       #    ssl_ciphers  HIGH:!aNULL:!MD5;
+       #    ssl_prefer_server_ciphers  on;
+   
+       #    location / {
+       #        root   html;
+       #        index  index.html index.htm;
+       #    }
+       #}
+   
+   }
+   
+   
+   
+   ```
+   
+   
