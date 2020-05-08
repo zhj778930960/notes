@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>process 进程 | 相得益张</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <meta name="description" content="相得益张--学习记录">
+    <link rel="preload" href="/notes/assets/css/0.styles.b442beba.css" as="style"><link rel="preload" href="/notes/assets/js/app.87eb0bad.js" as="script"><link rel="preload" href="/notes/assets/js/2.ab059f77.js" as="script"><link rel="preload" href="/notes/assets/js/45.60a1741e.js" as="script"><link rel="prefetch" href="/notes/assets/js/10.3bc8e628.js"><link rel="prefetch" href="/notes/assets/js/11.e217e31a.js"><link rel="prefetch" href="/notes/assets/js/12.cbb69e62.js"><link rel="prefetch" href="/notes/assets/js/13.f7758b78.js"><link rel="prefetch" href="/notes/assets/js/14.84c5f5ed.js"><link rel="prefetch" href="/notes/assets/js/15.0af68075.js"><link rel="prefetch" href="/notes/assets/js/16.021e8f2d.js"><link rel="prefetch" href="/notes/assets/js/17.66a85f80.js"><link rel="prefetch" href="/notes/assets/js/18.ba05f090.js"><link rel="prefetch" href="/notes/assets/js/19.e2f99e8b.js"><link rel="prefetch" href="/notes/assets/js/20.941d9e1b.js"><link rel="prefetch" href="/notes/assets/js/21.9d4cac35.js"><link rel="prefetch" href="/notes/assets/js/22.252e33dc.js"><link rel="prefetch" href="/notes/assets/js/23.13411a79.js"><link rel="prefetch" href="/notes/assets/js/24.8e26c7fc.js"><link rel="prefetch" href="/notes/assets/js/25.38cfb346.js"><link rel="prefetch" href="/notes/assets/js/26.bc2ce35d.js"><link rel="prefetch" href="/notes/assets/js/27.de819abc.js"><link rel="prefetch" href="/notes/assets/js/28.240c1203.js"><link rel="prefetch" href="/notes/assets/js/29.45202189.js"><link rel="prefetch" href="/notes/assets/js/3.4c926d55.js"><link rel="prefetch" href="/notes/assets/js/30.201af39a.js"><link rel="prefetch" href="/notes/assets/js/31.44f3a3b8.js"><link rel="prefetch" href="/notes/assets/js/32.9976bde2.js"><link rel="prefetch" href="/notes/assets/js/33.5fdde170.js"><link rel="prefetch" href="/notes/assets/js/34.3b381bb1.js"><link rel="prefetch" href="/notes/assets/js/35.fe4fcd00.js"><link rel="prefetch" href="/notes/assets/js/36.84135649.js"><link rel="prefetch" href="/notes/assets/js/37.b9d09537.js"><link rel="prefetch" href="/notes/assets/js/38.d30c9903.js"><link rel="prefetch" href="/notes/assets/js/39.7cfb5c4f.js"><link rel="prefetch" href="/notes/assets/js/4.63483a06.js"><link rel="prefetch" href="/notes/assets/js/40.4c8e1e51.js"><link rel="prefetch" href="/notes/assets/js/41.58deb7b9.js"><link rel="prefetch" href="/notes/assets/js/42.436ae0a2.js"><link rel="prefetch" href="/notes/assets/js/43.6444776b.js"><link rel="prefetch" href="/notes/assets/js/44.97a381cd.js"><link rel="prefetch" href="/notes/assets/js/46.2bc094f6.js"><link rel="prefetch" href="/notes/assets/js/47.e7c7fbfe.js"><link rel="prefetch" href="/notes/assets/js/48.08656dcc.js"><link rel="prefetch" href="/notes/assets/js/49.8855787d.js"><link rel="prefetch" href="/notes/assets/js/5.007a2e88.js"><link rel="prefetch" href="/notes/assets/js/6.a700c18e.js"><link rel="prefetch" href="/notes/assets/js/7.874b9d24.js"><link rel="prefetch" href="/notes/assets/js/8.32c6d394.js"><link rel="prefetch" href="/notes/assets/js/9.4b9488e9.js">
+    <link rel="stylesheet" href="/notes/assets/css/0.styles.b442beba.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/notes/" class="home-link router-link-active"><!----> <span class="site-name">相得益张</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/notes/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/notes/blog/node/1 Node.js基础-环境安全配置.html" class="nav-link">
+  目录
+</a></div> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="repo-link">
+    My GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/notes/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/notes/blog/node/1 Node.js基础-环境安全配置.html" class="nav-link">
+  目录
+</a></div> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="repo-link">
+    My GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><a href="/notes/" class="sidebar-link">首页</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Node进阶</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/notes/blog/node进阶/Buffer 缓冲.html" class="sidebar-link">Buffer 缓冲</a></li><li><a href="/notes/blog/node进阶/DNS解析.html" class="sidebar-link">DNS 解析</a></li><li><a href="/notes/blog/node进阶/process 进程.html" class="active sidebar-link">process 进程</a></li><li><a href="/notes/blog/node进阶/浅谈 Node.js 模块机制及常见面试问题解答.html" class="sidebar-link">浅谈 Node.js 模块机制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/notes/blog/node进阶/浅谈IO.html" class="sidebar-link">浅谈 I/O</a></li><li><a href="/notes/blog/node进阶/浅谈内存和V8垃圾回收机制.html" class="sidebar-link">浅谈内存和V8引擎垃圾回收机制</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Koa2</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Nginx</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="process-进程"><a href="#process-进程" class="header-anchor">#</a> process 进程</h1> <p><strong>首先要明白，进程和线程的关系</strong></p> <ul><li>进程是根据<code>cpu</code>的处理能力来看， 可以产生多个进程，负责处理不同的任务。</li> <li>线程是进程的子集，<strong>一个进程可以有一个或者多个线程</strong></li> <li>在单核 CPU 系统之上我们采用 <code>单进程 + 单线程</code> 的模式来开发</li> <li>在多核 CPU 系统之上，可以用过 <code>child_process.fork</code> 开启多个进程（<code>Node.js</code> 在<code>v0.8</code> 版本之后新增了Cluster 来实现多进程架构，多个线程有各自的调用栈（call stack），自己的寄存器环境（register context），自己的线程本地存储（thread-local storage)</li></ul> <p><strong>注意：开启多进程不是为了解决高并发，主要是解决了单进程模式下 <code>Node.js CPU</code> 利用率不足的情况，充分利用多核 CPU 的性能。</strong></p> <ol><li>process介绍</li></ol> <p>​        <code>Node.js</code> 中的进程 Process 是一个全局对象，无需 require 直接使用，给我们提供了当前进程中的相关信息</p> <ol start="2"><li><p>常用的一些命令</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token number">1.</span> process<span class="token punctuation">.</span>env  环境变量， 例如通过process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> 可以获取环境项目配置信息。
+<span class="token number">2.</span> process<span class="token punctuation">.</span>nextTick   其实跟vue的 <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$nextTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法内部机制有些类似，就是当前面所有的时间执行完成之后。
+<span class="token number">3.</span> process<span class="token punctuation">.</span>pid   当前进程的id
+<span class="token number">4.</span> process<span class="token punctuation">.</span>ppid   当前进程对应的父进程的id
+<span class="token number">5.</span> process<span class="token punctuation">.</span><span class="token function">cwd</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   获取当前进程的工作目录
+<span class="token number">6.</span> process<span class="token punctuation">.</span>platform 获取当前进行运行的操作系统平台
+<span class="token number">7.</span> process<span class="token punctuation">.</span><span class="token function">uptime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  当前进程已运行时间， 例如pm2 守护进程的uptime值
+<span class="token number">8.</span> 进程事件 
+    process<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;uncaughtException&quot;</span><span class="token punctuation">,</span> cb<span class="token punctuation">)</span> 捕获异信息
+    process<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;exit&quot;</span><span class="token punctuation">,</span> cb<span class="token punctuation">)</span> 进程退出监听
+<span class="token number">9.</span> 三个标准流
+    process<span class="token punctuation">.</span>stdout 标准输出
+    process<span class="token punctuation">.</span>stdin  标准输入
+    process<span class="token punctuation">.</span>stderr 标准错误输出
+    
+    
+    
+    
+总结： 
+<span class="token number">1.</span> js是单线程的，但是作为宿主环境的nodejs并不是
+<span class="token number">2.</span> 由于单线程的缘故，一些复杂的，小号cpu的资源的一些任务不要交给nodejs进行处理，当你的业务需要大量计算，视频编码解码等cpu密集型的任务，可以使用其他的后端语言进行
+<span class="token number">3.</span> node<span class="token punctuation">.</span>js 和 nginx 都是事件驱动方式，避免了多线程的线程创建，线程上下文切换的开销，如果你的业务大多数是基于<span class="token constant">I</span><span class="token operator">/</span><span class="token constant">O</span>操作，那么你可以选择nodejs来开发。
+
+
+</code></pre></div></li></ol></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/notes/blog/node进阶/DNS解析.html" class="prev">
+        DNS 解析
+      </a></span> <span class="next"><a href="/notes/blog/node进阶/浅谈 Node.js 模块机制及常见面试问题解答.html">
+        浅谈 Node.js 模块机制
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/notes/assets/js/app.87eb0bad.js" defer></script><script src="/notes/assets/js/2.ab059f77.js" defer></script><script src="/notes/assets/js/45.60a1741e.js" defer></script>
+  </body>
+</html>
