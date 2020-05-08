@@ -1,16 +1,14 @@
 module.exports = {
-  head: [
-    [
-      "link",
-      { rel: "shortcut icon", href: `./favicon.ico` },
-    ],
-  ],
   base: "/notes/", // 站点的基础路径，它的值应当总是以斜杠开始，并以斜杠结束，
   title: "相得益张", // 网站的标题
   description: "相得益张--学习记录", //网站的描述
+  dest: '/dist/', // 打包后的文件夹路径，为了方便，我把 dist 文件夹放到了根目录上
+  head: [
+    ["link", { rel: "icon", href: '/favicon.ico' }],
+  ],
   themeConfig: {
     // 你的GitHub仓库，请正确填写
-    repo: "https://github.com/",
+    repo: "https://github.com/zhj778930960/notes",
     // 自定义仓库链接文字。
     repoLabel: "My GitHub",
     nav: [
@@ -18,16 +16,10 @@ module.exports = {
       { text: "目录", link: "/blog/node/1 Node.js基础-环境安全配置" },
     ],
     displayAllHeaders: true,
-    sidebarDepth: 3,
     sidebar: [
       {
-        title: "首页", // 必要的
-        path: "/", // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-        collapsable: false, // 可选的, 默认值是 true,
-        sidebarDepth: 1, // 可选的, 默认值是 1
-      },
-      {
         title: "Node",
+        sidebarDepth: 3, // 可选的, 默认值是 1
         children: [
           "../blog/node/1 Node.js基础-环境安全配置.md",
           "../blog/node/2 Node.js基础-全局成员概述.md",
@@ -49,6 +41,7 @@ module.exports = {
       },
       {
         title: "Node进阶",
+        sidebarDepth: 3,
         children: [
           "../blog/node进阶/Buffer 缓冲.md",
           "../blog/node进阶/DNS解析.md",
@@ -60,6 +53,7 @@ module.exports = {
       },
       {
         title: "Koa2",
+        sidebarDepth: 3,
         children: [
           "../blog/koa2/1 Node.js-Web开发-supervisor & nodemon.md",
           "../blog/koa2/2 Node.js-Web开发-MongoDb数据库.md",
@@ -83,6 +77,7 @@ module.exports = {
       },
       {
         title: "Nginx",
+        sidebarDepth: 3,
         children: [
           "../blog/nginx/1 Nginx 环境搭建.md",
           "../blog/nginx/2 Nginx 配置文件.md",
