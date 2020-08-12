@@ -84,6 +84,105 @@ module.exports = {
           "../blog/nginx/3 Nginx 主要应用.md",
         ],
       },
+      {
+        title: "TypeScript",
+        sidebarDepth: 3,
+        children: [
+          "../blog/TypeScript/1 基础类型.md",
+          "../blog/TypeScript/2 接口.md",
+          "../blog/TypeScript/3 类.md",
+          "../blog/TypeScript/4 函数.md",
+          "../blog/TypeScript/5 泛型.md",
+          "../blog/TypeScript/6 枚举.md",
+          "../blog/TypeScript/7 装饰器.md",
+          "../blog/TypeScript/8 类型推论.md",
+        ],
+      },
+      {
+        title: "Egg基础",
+        sidebarDepth: 3,
+        children: [
+          "../blog/Egg基础/1 egg.js介绍和环境搭建.md",
+          "../blog/Egg基础/2 egg.js 目录结构.md",
+          "../blog/Egg基础/3 路由Router.md",
+          "../blog/Egg基础/4 控制器Controller.md",
+          "../blog/Egg基础/5 服务Service.md",
+          "../blog/Egg基础/6 插件.md",
+          "../blog/Egg基础/7 定时任务.md",
+          "../blog/Egg基础/8 扩展.md",
+          "../blog/Egg基础/9 自定义启动项.md",
+          "../blog/Egg基础/10 egg-mongoose.md",
+          "../blog/Egg基础/11 egg-cors.md",
+          "../blog/Egg基础/12 egg-jwt.md",
+        ],
+      },
+      {
+        title: "HTTP协议",
+        sidebarDepth: 3,
+        children: [
+          "../blog/HTTP协议/1 web及网络基础.md",
+          "../blog/HTTP协议/2 简单的HTTP协议.md",
+        ]
+      },
+      {
+        title: "Css",
+        sidebarDepth: 3,
+        children: [
+          "../blog/Css/1 Grid 网格布局.md",
+        ]
+      },
+      {
+        title: "JS-questions",
+        sidebarDepth: 3,
+        children: [
+          "../blog/JS-题目/1 手写new的过程.md",
+          "../blog/JS-题目/2 手写一个节流函数.md",
+          "../blog/JS-题目/3 手写一个防抖函数.md",
+          "../blog/JS-题目/4 JS的数据结构.md",
+          "../blog/JS-题目/5 JS事件流.md",
+          "../blog/JS-题目/6 深拷贝和浅拷贝.md",
+          "../blog/JS-题目/7 继承.md",
+          "../blog/JS-题目/8 设计模式.md",
+        ]
+      },
+      {
+        title: "HTTP-questions",
+        sidebarDepth: 3,
+        children: [
+          "../blog/HTTP-题目/1 HTTP缓存机制.md",
+          "../blog/HTTP-题目/2 HTTP 状态码.md",
+        ]
+      },
+      {
+        title: "Vue-questions",
+        sidebarDepth: 3,
+        children: [
+          "../blog/Vue-题目/1 Vue双向绑定原理.md",
+          "../blog/Vue-题目/2 Diff算法.md",
+          "../blog/Vue-题目/3 v-if 和 v-show的区别.md",
+          "../blog/Vue-题目/4 为什么v-for 要用key.md",
+          "../blog/Vue-题目/5 vue组件的生命周期.md",
+          "../blog/Vue-题目/6 vue组件如何通信.md",
+          "../blog/Vue-题目/7 描述组件渲染和更细的过程.md",
+          "../blog/Vue-题目/8 v-model实现原理.md",
+          "../blog/Vue-题目/9 vue父子组件传值.md",
+          "../blog/Vue-题目/10 nextTick.md",
+          "../blog/Vue-题目/11 slot.md",
+          "../blog/Vue-题目/12 动态，异步组件.md",
+          "../blog/Vue-题目/13 keep-alive.md",
+          "../blog/Vue-题目/14 mixin.md",
+          "../blog/Vue-题目/15 路由.md",
+          "../blog/Vue-题目/16 data 为啥是一个函数.md",
+        ]
+      },
+      {
+        title: "浏览器-questions",
+        sidebarDepth: 3,
+        children: [
+          "../blog/浏览器-题目/1 重绘和回流.md",
+          "../blog/浏览器-题目/2 V8 引擎垃圾回收机制.md",
+        ]
+      },
     ],
   },
 };
