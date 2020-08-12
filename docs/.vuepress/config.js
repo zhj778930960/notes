@@ -23,7 +23,7 @@ module.exports = {
           { text: 'Nginx', link: '/blog/knowledge/nginx/1 Nginx 环境搭建.md' },
           { text: 'TypeScript', link: '/blog/knowledge/TypeScript/1 基础类型.md' },
           { text: 'Css', link: '/blog/knowledge/Css/1 Grid 网格布局.md' },
-          { text: 'HTTP协议', link: '/blog/knowledge/1 web及网络基础.md' }
+          { text: 'HTTP协议', link: '/blog/knowledge/HTTP协议/1 web及网络基础.md' }
         ]
       },
       { 
