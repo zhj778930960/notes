@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>浅谈 Node.js 模块机制 | 相得益张</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    <link rel="icon" href="/notes/favicon.ico">
+    <meta name="description" content="相得益张--学习记录">
+    <link rel="preload" href="/notes/assets/css/0.styles.42e4205b.css" as="style"><link rel="preload" href="/notes/assets/js/app.fe2ce721.js" as="script"><link rel="preload" href="/notes/assets/js/2.38aa6867.js" as="script"><link rel="preload" href="/notes/assets/js/73.a468d60a.js" as="script"><link rel="prefetch" href="/notes/assets/js/10.9bf6f3b7.js"><link rel="prefetch" href="/notes/assets/js/100.44890c85.js"><link rel="prefetch" href="/notes/assets/js/11.dc9e2270.js"><link rel="prefetch" href="/notes/assets/js/12.0de627b0.js"><link rel="prefetch" href="/notes/assets/js/13.0b3a9b3c.js"><link rel="prefetch" href="/notes/assets/js/14.205bbfe1.js"><link rel="prefetch" href="/notes/assets/js/15.267be937.js"><link rel="prefetch" href="/notes/assets/js/16.3653142e.js"><link rel="prefetch" href="/notes/assets/js/17.0c0188d6.js"><link rel="prefetch" href="/notes/assets/js/18.0ca129cd.js"><link rel="prefetch" href="/notes/assets/js/19.901acad8.js"><link rel="prefetch" href="/notes/assets/js/20.4bba7fa3.js"><link rel="prefetch" href="/notes/assets/js/21.ad00d2e7.js"><link rel="prefetch" href="/notes/assets/js/22.cfbefa32.js"><link rel="prefetch" href="/notes/assets/js/23.7c453706.js"><link rel="prefetch" href="/notes/assets/js/24.0bea1c78.js"><link rel="prefetch" href="/notes/assets/js/25.704c201f.js"><link rel="prefetch" href="/notes/assets/js/26.ac19a26a.js"><link rel="prefetch" href="/notes/assets/js/27.1563096e.js"><link rel="prefetch" href="/notes/assets/js/28.4140f25e.js"><link rel="prefetch" href="/notes/assets/js/29.9950a36e.js"><link rel="prefetch" href="/notes/assets/js/3.5eead938.js"><link rel="prefetch" href="/notes/assets/js/30.b65a7952.js"><link rel="prefetch" href="/notes/assets/js/31.d6c97327.js"><link rel="prefetch" href="/notes/assets/js/32.f537bf4f.js"><link rel="prefetch" href="/notes/assets/js/33.c6880b4d.js"><link rel="prefetch" href="/notes/assets/js/34.dae245ff.js"><link rel="prefetch" href="/notes/assets/js/35.99fa3572.js"><link rel="prefetch" href="/notes/assets/js/36.5eebaf36.js"><link rel="prefetch" href="/notes/assets/js/37.5348fa04.js"><link rel="prefetch" href="/notes/assets/js/38.cd9dccf5.js"><link rel="prefetch" href="/notes/assets/js/39.7b21d72d.js"><link rel="prefetch" href="/notes/assets/js/4.7c315ffd.js"><link rel="prefetch" href="/notes/assets/js/40.20d40eed.js"><link rel="prefetch" href="/notes/assets/js/41.56335bb8.js"><link rel="prefetch" href="/notes/assets/js/42.36c25678.js"><link rel="prefetch" href="/notes/assets/js/43.80350037.js"><link rel="prefetch" href="/notes/assets/js/44.213a22d4.js"><link rel="prefetch" href="/notes/assets/js/45.dcd182e2.js"><link rel="prefetch" href="/notes/assets/js/46.dac8a5b4.js"><link rel="prefetch" href="/notes/assets/js/47.72f2c272.js"><link rel="prefetch" href="/notes/assets/js/48.8858f3aa.js"><link rel="prefetch" href="/notes/assets/js/49.489f0491.js"><link rel="prefetch" href="/notes/assets/js/5.3ccd230e.js"><link rel="prefetch" href="/notes/assets/js/50.e998b5f9.js"><link rel="prefetch" href="/notes/assets/js/51.c656001a.js"><link rel="prefetch" href="/notes/assets/js/52.f61f1cfb.js"><link rel="prefetch" href="/notes/assets/js/53.6dfbe363.js"><link rel="prefetch" href="/notes/assets/js/54.b492b7da.js"><link rel="prefetch" href="/notes/assets/js/55.ae1a7a79.js"><link rel="prefetch" href="/notes/assets/js/56.93c793b7.js"><link rel="prefetch" href="/notes/assets/js/57.9443f389.js"><link rel="prefetch" href="/notes/assets/js/58.f11bbff0.js"><link rel="prefetch" href="/notes/assets/js/59.731ba3ec.js"><link rel="prefetch" href="/notes/assets/js/6.d4e2f965.js"><link rel="prefetch" href="/notes/assets/js/60.fede14a1.js"><link rel="prefetch" href="/notes/assets/js/61.627c1fab.js"><link rel="prefetch" href="/notes/assets/js/62.9de7eac1.js"><link rel="prefetch" href="/notes/assets/js/63.40821683.js"><link rel="prefetch" href="/notes/assets/js/64.c4924689.js"><link rel="prefetch" href="/notes/assets/js/65.1b6456a7.js"><link rel="prefetch" href="/notes/assets/js/66.2ead76b2.js"><link rel="prefetch" href="/notes/assets/js/67.982a7c3c.js"><link rel="prefetch" href="/notes/assets/js/68.bdf5022e.js"><link rel="prefetch" href="/notes/assets/js/69.d44027ff.js"><link rel="prefetch" href="/notes/assets/js/7.7b47b2b0.js"><link rel="prefetch" href="/notes/assets/js/70.288f86ec.js"><link rel="prefetch" href="/notes/assets/js/71.de30c95d.js"><link rel="prefetch" href="/notes/assets/js/72.538e8fdc.js"><link rel="prefetch" href="/notes/assets/js/74.08fd1073.js"><link rel="prefetch" href="/notes/assets/js/75.df09fcb7.js"><link rel="prefetch" href="/notes/assets/js/76.e5c9ae5c.js"><link rel="prefetch" href="/notes/assets/js/77.03dd0920.js"><link rel="prefetch" href="/notes/assets/js/78.5099625b.js"><link rel="prefetch" href="/notes/assets/js/79.42eaf4bf.js"><link rel="prefetch" href="/notes/assets/js/8.f242d85b.js"><link rel="prefetch" href="/notes/assets/js/80.d859ad64.js"><link rel="prefetch" href="/notes/assets/js/81.2f1a6608.js"><link rel="prefetch" href="/notes/assets/js/82.dd488ac6.js"><link rel="prefetch" href="/notes/assets/js/83.6ebc9b99.js"><link rel="prefetch" href="/notes/assets/js/84.5513a03a.js"><link rel="prefetch" href="/notes/assets/js/85.827bea3a.js"><link rel="prefetch" href="/notes/assets/js/86.755edc3b.js"><link rel="prefetch" href="/notes/assets/js/87.7eceef9b.js"><link rel="prefetch" href="/notes/assets/js/88.c351661d.js"><link rel="prefetch" href="/notes/assets/js/89.61d028ce.js"><link rel="prefetch" href="/notes/assets/js/9.a322b9e4.js"><link rel="prefetch" href="/notes/assets/js/90.b7638a89.js"><link rel="prefetch" href="/notes/assets/js/91.4402cb4f.js"><link rel="prefetch" href="/notes/assets/js/92.55bc5f84.js"><link rel="prefetch" href="/notes/assets/js/93.02fc0ad4.js"><link rel="prefetch" href="/notes/assets/js/94.6f8fd60c.js"><link rel="prefetch" href="/notes/assets/js/95.27c7856f.js"><link rel="prefetch" href="/notes/assets/js/96.a359de12.js"><link rel="prefetch" href="/notes/assets/js/97.da871040.js"><link rel="prefetch" href="/notes/assets/js/98.e221323a.js"><link rel="prefetch" href="/notes/assets/js/99.5788721a.js">
+    <link rel="stylesheet" href="/notes/assets/css/0.styles.42e4205b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/notes/" class="home-link router-link-active"><!----> <span class="site-name">相得益张</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/notes/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/node/1 Node.js基础-环境安全配置.html" class="nav-link">
+  Node
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/node进阶/Buffer 缓冲.html" class="nav-link">
+  Node进阶
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/koa2/1 Node.js-Web开发-supervisor &amp; nodemon.html" class="nav-link">
+  Koa2
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/Egg基础/1 egg.js介绍和环境搭建.html" class="nav-link">
+  Egg基础
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/nginx/1 Nginx 环境搭建.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/TypeScript/1 基础类型.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/Css/1 Grid 网格布局.html" class="nav-link">
+  Css
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/HTTP协议/1 web及网络基础.html" class="nav-link">
+  HTTP协议
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="题目" class="dropdown-title"><span class="title">题目</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/notes/blog/questions/JS-题目/1 手写new的过程.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/questions/HTTP-题目/1 HTTP缓存机制.html" class="nav-link">
+  HTTP
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/questions/Vue-题目/1 Vue双向绑定原理.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/questions/浏览器-题目/1 重绘和回流.html" class="nav-link">
+  浏览器
+</a></li></ul></div></div> <a href="https://github.com/zhj778930960/notes" target="_blank" rel="noopener noreferrer" class="repo-link">
+    My GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/notes/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="目录" class="dropdown-title"><span class="title">目录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/node/1 Node.js基础-环境安全配置.html" class="nav-link">
+  Node
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/node进阶/Buffer 缓冲.html" class="nav-link">
+  Node进阶
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/koa2/1 Node.js-Web开发-supervisor &amp; nodemon.html" class="nav-link">
+  Koa2
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/Egg基础/1 egg.js介绍和环境搭建.html" class="nav-link">
+  Egg基础
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/nginx/1 Nginx 环境搭建.html" class="nav-link">
+  Nginx
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/TypeScript/1 基础类型.html" class="nav-link">
+  TypeScript
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/Css/1 Grid 网格布局.html" class="nav-link">
+  Css
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/knowledge/HTTP协议/1 web及网络基础.html" class="nav-link">
+  HTTP协议
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="题目" class="dropdown-title"><span class="title">题目</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/notes/blog/questions/JS-题目/1 手写new的过程.html" class="nav-link">
+  JS
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/questions/HTTP-题目/1 HTTP缓存机制.html" class="nav-link">
+  HTTP
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/questions/Vue-题目/1 Vue双向绑定原理.html" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/notes/blog/questions/浏览器-题目/1 重绘和回流.html" class="nav-link">
+  浏览器
+</a></li></ul></div></div> <a href="https://github.com/zhj778930960/notes" target="_blank" rel="noopener noreferrer" class="repo-link">
+    My GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>node进阶</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/notes/blog/knowledge/node进阶/Buffer 缓冲.html" class="sidebar-link">Buffer 缓冲</a></li><li><a href="/notes/blog/knowledge/node进阶/DNS解析.html" class="sidebar-link">DNS 解析</a></li><li><a href="/notes/blog/knowledge/node进阶/process 进程.html" class="sidebar-link">process 进程</a></li><li><a href="/notes/blog/knowledge/node进阶/浅谈 Node.js 模块机制及常见面试问题解答.html" class="active sidebar-link">浅谈 Node.js 模块机制</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/notes/blog/knowledge/node进阶/浅谈IO.html" class="sidebar-link">浅谈 I/O</a></li><li><a href="/notes/blog/knowledge/node进阶/浅谈内存和V8垃圾回收机制.html" class="sidebar-link">浅谈内存和V8引擎垃圾回收机制</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="浅谈-node-js-模块机制"><a href="#浅谈-node-js-模块机制" class="header-anchor">#</a> 浅谈 <code>Node.js</code> 模块机制</h1> <h3 id="模块加载机制，-require-时的，在-node-js-中模块加载一般会经历-3-个步骤，路径分析、文件定位、编译执行。"><a href="#模块加载机制，-require-时的，在-node-js-中模块加载一般会经历-3-个步骤，路径分析、文件定位、编译执行。" class="header-anchor">#</a> 模块加载机制， require()时的，在 <code>Node.js</code> 中模块加载一般会经历 3 个步骤，<code>路径分析</code>、<code>文件定位</code>、<code>编译执行</code>。</h3> <ol><li><strong>系统缓存</strong>：模块被执行之后，会进行缓存，<strong>缓存是编译和执行之后的对象，核心模块的缓存检查会优先于文件模块的缓存</strong>；首先先去访问缓存里面有没有这个文件，如果有的话，直接加载缓存文件，如果没有的话，就继续访问 2 中有没有。</li> <li><strong>系统模块</strong>：系统缓存没有的前提下，会访问系统模块，例如<code>fs</code>,  <code>path</code>等内置的模块，省略了 <code>路径分析</code>、<code>文件定位</code></li> <li><strong>文件模块</strong>：如果没有在系统内置的模块中找到，那就会去找目录中的文件， 进行省略了 <code>路径分析</code>、<code>文件定位</code>， 找到文件之后，然后<code>编译执行</code>， <strong>如果文件没有加上扩展名，会依次按照 <code>.js</code>、<code>.json</code>、<code>.node</code> 进行扩展名补足尝试</strong></li> <li><strong>目录做为模块</strong>：这种情况发生在文件模块加载过程中，也没有找到，但是发现是一个目录的情况，这个时候会将这个目录当作一个 <code>包</code> 来处理，Node 这块采用了 <code>Commonjs</code>规范，先会在项目根目录查找 <code>package.json</code> 文件，取出文件中定义的 main 属性 <code>(&quot;main&quot;: &quot;lib/hello.js&quot;)</code> 描述的入口文件进行加载，也没加载到，则会抛出默认错误: <code>Error: Cannot find module 'lib/hello.js'</code></li> <li><strong>node_modules 目录加载</strong>：对于系统模块、路径文件模块都找不到，<code>Node.js</code>会从当前模块的父目录进行查找，直到系统的根目录</li></ol> <p>​</p> <ul><li><p><strong>注意：</strong> 我们可以通过<code>require.cache</code> <code>Api</code>的方式查询当前，内粗那种缓存的文件</p></li> <li><p>有一个<code>a.js</code> 其中有一个变量没有被定义，直接赋值了，例如<code>name = &quot;123&quot;</code>, 并没有<code>var</code>,  <code>let</code>, <code>const</code> 等定义，那么这个属于整个<code>node</code>的全局变量， 所以<code>name</code>是一个未声明的变量，也就是一个挂在全局的变量，那么在其他地方当然是可以拿到的。</p></li> <li><p><code>exports</code>和<code>module.exports</code>的区别：<code>exports</code>相当于<code>module.exports</code> 的快捷方式如下所示:</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> exports <span class="token operator">=</span> module<span class="token punctuation">.</span>exports<span class="token punctuation">;</span>
+
+<span class="token comment">//exports 是一个对象， 它的this 指向了 module.exports  </span>
+
+所以 我们不能直接将对象赋值给exports 这样就改变了它的<span class="token keyword">this</span>指向。 就没法用了
+
+<span class="token comment">//错误导出</span>
+exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+     name<span class="token operator">:</span> <span class="token string">&quot;123&quot;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//正确导出</span>
+exports<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&quot;123&quot;</span><span class="token punctuation">;</span>
+</code></pre></div></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/notes/blog/knowledge/node进阶/process 进程.html" class="prev">
+        process 进程
+      </a></span> <span class="next"><a href="/notes/blog/knowledge/node进阶/浅谈IO.html">
+        浅谈 I/O
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/notes/assets/js/app.fe2ce721.js" defer></script><script src="/notes/assets/js/2.38aa6867.js" defer></script><script src="/notes/assets/js/73.a468d60a.js" defer></script>
+  </body>
+</html>
